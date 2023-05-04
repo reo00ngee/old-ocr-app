@@ -13,6 +13,8 @@ RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
+RUN docker-php-ext-install bcmath
+
 # ミドルウェアのインストール
 RUN apt-get update \
 && apt-get install -y \
