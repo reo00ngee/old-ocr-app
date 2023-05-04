@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('content');
             $table->text('fixed_content');
             $table->text('point_of_content');
-            $table->timestamp('added_at', $precision = 0);
         });
     }
 
