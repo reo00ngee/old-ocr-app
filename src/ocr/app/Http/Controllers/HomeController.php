@@ -72,7 +72,21 @@ class HomeController extends Controller
 
         }
         $content = join(', ', $bounds) . PHP_EOL;
+        $result = OpenAI::completions()->create([
+            'model' => 'text-davinci-003',
+            'prompt' => "翻訳をせずに下記文章の誤字・脱字・スペルミスを修正してください。"."\n".$content,
+            'temperature' => 0.2,
+            'max_tokens' => 2000,
+        ]);
+        $fixed_content = $result['choices'][0]['text'];
 
+        $result = OpenAI::completions()->create([
+            'model' => 'text-davinci-003',
+            'prompt' => "meke the following sentences shorter."."\n".$fixed_content,
+            'temperature' => 0.2,
+            'max_tokens' => 2000,
+        ]);
+        $point_of_content = $result['choices'][0]['text'];
 
         // ocrsテーブルに格納
         $ocr_id = Ocr::insertGetId([
@@ -80,8 +94,8 @@ class HomeController extends Controller
             'status' => '1',
             'user_id' => $data['user_id'],
             'content' => $content,
-            'fixed_content' => 'i',
-            'point_of_content' => 'u'
+            'fixed_content' => $fixed_content,
+            'point_of_content' => $point_of_content
         ]);
         $imageAnnotator->close();
 
