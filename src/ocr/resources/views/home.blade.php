@@ -13,7 +13,7 @@
                         <input type='hidden' name='user_id' value="{{ $user['id'] }}">
                         <!-- 画像をアップロードするフォーム -->
                         <div class="form-group">
-                            <label for="image">OCRする画像をアップロードしてください</label>
+                            <h4>OCRする画像をアップロードしてください</h4>
                             <div>
                                 <input type="file" class="form-control-file" name='image' id="image">
                             </div>
@@ -22,7 +22,23 @@
                     </form>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">このアプリについて</div>
+                <div class="card-body">
+                    <form method='GET' action="/ocrResult">
+                        @csrf
+                        <input type='hidden' name='user_id' value="{{ $user['id'] }}">
+
+                        <p>このアプリでは、画像をアップロードすることで、画像からOCRにより読み取られたテキストを閲覧することができます。 </p>
+                        <p>テキストは、「OCR後に修正された文章」と「要約された文章」を閲覧でき、修正して更新することも可能です。</p>
+                        <p>画像ファイルは、jpgとpngを利用できます。</p>
+
+                        <button type='submit' class="btn btn-primary btn-lg">OCR一覧へ移動</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
