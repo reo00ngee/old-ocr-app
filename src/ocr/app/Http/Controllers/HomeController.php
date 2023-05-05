@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Ocr;
 use Google\Cloud\Vision\V1\Feature\Type;
 use OpenAI\Laravel\Facades\OpenAI;
+use App\Http\Requests\ImageRequest;
 
 class HomeController extends Controller
 {
@@ -46,9 +47,8 @@ class HomeController extends Controller
         return view('ocrResult', compact('user', 'ocrs'));
     }
 // homeから画像をアップロードする
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {
-
 
         $imageAnnotator = new ImageAnnotatorClient([
             'credentials' =>'/var/www/html/ocr/config/google-credentials.json',
@@ -60,6 +60,9 @@ class HomeController extends Controller
         $path = \Storage::put('/public', $image);
         // 画像のpathを作る
         $path = explode('/', $path);
+        if (!in_array($image->getClientOriginalExtension(), ['jpg', 'jpeg', 'png'])) {
+            return redirect()->route('home')->with('error', '画像はJPG、JPEG、PNG形式でアップロードしてください。');
+        }
 
         $image = file_get_contents(Storage::disk('public')->path($path[1]));
         // Vision APIを使用して、テキストを抽出する
