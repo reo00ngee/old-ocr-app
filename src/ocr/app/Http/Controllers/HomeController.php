@@ -10,6 +10,7 @@ use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Ocr;
 use Google\Cloud\Vision\V1\Feature\Type;
+use OpenAI\Laravel\Facades\OpenAI;
 
 class HomeController extends Controller
 {
@@ -47,7 +48,6 @@ class HomeController extends Controller
 // homeから画像をアップロードする
     public function store(Request $request)
     {
-        require_once "/var/www/html/ocr/vendor/google/cloud-vision/src/V1/ImageAnnotatorClient.php";
 
 
         $imageAnnotator = new ImageAnnotatorClient([
@@ -72,6 +72,8 @@ class HomeController extends Controller
 
         }
         $content = join(', ', $bounds) . PHP_EOL;
+
+
         // ocrsテーブルに格納
         $ocr_id = Ocr::insertGetId([
             'image' => $path[1],
