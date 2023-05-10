@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="col-md-6" style=" padding: 0;">
-    <div class="card w-100">
+    <div class="card h-100">
         <div class="card-header">OCRされた文章</div>
         <div class="card-body">
             <form method='POST' action="/store">

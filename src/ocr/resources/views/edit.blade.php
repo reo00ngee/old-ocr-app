@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="col-md-6" style=" padding: 0;">
-  <div class="card w-100">
+  <div class="card h-100">
     <form method='POST' action="/delete/{{$ocr['id']}}" id='delete-form'>
       @csrf
       <div class="card-header">OCRされた文章
