@@ -27,7 +27,7 @@
           <textarea name='fixed_content' class="form-control" rows="10">{{$ocr['fixed_content']}}</textarea>
         </div>
         <div class="form-group">
-          <p>要約された文章</p>
+          <p class="mt-4">要約された文章</p>
           <textarea name='point_of_content' class="form-control" rows="10">{{$ocr['point_of_content']}}</textarea>
         </div>
         <button type='submit' class="btn btn-primary btn-lg">更新</button>

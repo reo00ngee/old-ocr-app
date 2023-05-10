@@ -42,7 +42,7 @@
                         <p>テキストは、「OCR後に修正された文章」と「要約された文章」を閲覧でき、修正して更新することも可能です。</p>
                         <p>画像ファイルは、jpgとpngを利用できます。</p>
 
-                        <button type='submit' class="btn btn-primary btn-lg">OCR一覧へ移動</button>
+                        <button type='submit' class="btn btn-primary btn-lg" id="indicator">OCR一覧へ移動</button>
                     </form>
                 </div>
             </div>
